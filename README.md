@@ -34,7 +34,6 @@ Here is an example using the `YUV` color space and HOG parameters of `orientatio
 
 <img src="./output_images/hog_features.jpg" height="600" width="800">
 
-#### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters and extracted the features from the images. Then I trained a Support Vector Machine with `rbf` kernal on the data. I noticed the performance of the classifier on features extracted for various parameters. Finally chose the one with highest classification accuracy. 
 
@@ -48,7 +47,7 @@ spatial_size = (16, 16)
 hist_bins = 16 
 ```
 
-#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+
 
 Feature extraction is done in the method `extract_features()` in cell 8 of `CarDetection_M1.ipynb` IPython notebook. I extract the `histogram of colors`, `binned color features` and `histogram of gradients` from an image and concatinate them to have features as a 1-d array. Once the features are extracted from all the images, I randomly split the data into training and test set. I fit a standard scalar (from scikit-learn) on the training set and use it transform both the training and test datasets.
 Finally I trained a `Support Vector Machine` binary classifier with `rbf` kernel. I use `rbf` kernal in order to find a non-linear decision boundary. Then I evaluated the trained model on the test set.
